@@ -29,7 +29,7 @@ find_package(Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
 
 set(SOURCE_TEST_FILES
         test/master.cpp
-        test/model/DESEncryptionTest.cpp
+        test/model/Encryption/DESEncryptionTest.cpp
         test/model/KeyTest.cpp
         test/model/helperFunctionsTest.cpp)
 

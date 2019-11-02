@@ -22,18 +22,17 @@ int main() {
     key.setKey(helperFunctions::binaryStringToString(helperFunctions::hexStringToBinaryString("AABB09182736CCDD")));
 
     Encryption *encryption = new DataStandardEncryption();
-    string x = helperFunctions::hexStringToBinaryString("123456ABCD132536");
-    string encrypted = encryption->encrypt(helperFunctions::binaryStringToString(x), key);
+//    string x = helperFunctions::hexStringToBinaryString("123456ABCD132332233");
+    string x = "Test123123"; //Test1231231231
+    string encrypted = encryption->encrypt(x, key);
 
 
     cout << "plainText:  " << x << '\n';
     cout << "cypherText: " << encrypted << '\n';
 
+
     reverse(encrypted.begin(), encrypted.end());
     string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(encrypted), key);
-    reverse(decrypted.begin(), decrypted.end());
-
-
     cout << "plainText:  " << decrypted << '\n';
 
     return 0;

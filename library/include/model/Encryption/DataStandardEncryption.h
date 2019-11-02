@@ -17,8 +17,8 @@ public:
     string encrypt(string message, Key &key);
     string decrypt(string message, Key &key);
 
-    void encrypt(string fileIn, string fileOut, Key &key) {};
-    void decrypt(string fileIn, string fileOut, Key &key) {};
+    void encrypt(string fileIn, string fileOut, Key &key);
+    void decrypt(string fileIn, string fileOut, Key &key);
 
 private:
     void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey);
