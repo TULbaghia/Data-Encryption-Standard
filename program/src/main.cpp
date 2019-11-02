@@ -30,11 +30,17 @@ int main() {
     cout << "cypherText: " << helperFunctions::binaryStringtoHexString(encrypted) << " [" << encrypted << "]" << '\n';
 
 
-    cout << "\n\n---\nDECRYPT\n---\n\n";
+    cout << "\n---\nDECRYPT\n---\n";
 
 
     string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(encrypted), key);
     cout << "plainText:  " << decrypted << '\n';
+
+//    bool encr = encryption->encrypt("/home/student/test", "/home/student/test.o", key);
+//    cout << encr << '\n';
+//
+//    bool decr = encryption->decrypt("/home/student/test.o", "/home/student/test.decr", key);
+//    cout << decr << '\n';
 
     return 0;
 }

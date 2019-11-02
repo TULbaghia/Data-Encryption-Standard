@@ -11,8 +11,8 @@ public:
     virtual string encrypt(string, Key &) = 0;
     virtual string decrypt(string, Key &) = 0;
 
-    virtual void encrypt(string, string, Key &) = 0;
-    virtual void decrypt(string, string, Key &) = 0;
+    virtual bool encrypt(string, string, Key &) = 0;
+    virtual bool decrypt(string, string, Key &) = 0;
 };
 
 
