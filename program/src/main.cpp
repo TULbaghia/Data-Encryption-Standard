@@ -22,24 +22,36 @@ int main() {
     key.setKey("zaq1@WSX");
 
     Encryption *encryption = new DataStandardEncryption();
-    string x = "1";
+
+    //TEXT HANDLE
+
+    string x = "Witaj swiecie";
     string encrypted = encryption->encrypt(x, key);
 
+    cout << "\n---\nENCRYPTED\n---\n\n";
 
     cout << "plainText:  " << x << '\n';
-    cout << "cypherText: " << helperFunctions::binaryStringtoHexString(encrypted) << " [" << encrypted << "]" << '\n';
+    cout << "cypherText: " << encrypted << '\n';
 
 
-    cout << "\n---\nDECRYPT\n---\n";
+    cout << "\n---\nDECRYPTED\n---\n\n";
 
 
-    string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(encrypted), key);
+    string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(helperFunctions::hexStringToBinaryString(encrypted)), key);
     cout << "plainText:  " << decrypted << '\n';
+
+    //FILE HANDLE
 
 //    bool encr = encryption->encrypt("/home/student/test", "/home/student/test.o", key);
 //    cout << encr << '\n';
 //
 //    bool decr = encryption->decrypt("/home/student/test.o", "/home/student/test.decr", key);
+//    cout << decr << '\n';
+
+//    bool encr = encryption->encrypt("/home/student/Pobrane/pobi_krypto.zip", "/home/student/Pobrane/pobi_krypto.encrypted.zip", key);
+//    cout << encr << '\n';
+//
+//    bool decr = encryption->decrypt("/home/student/Pobrane/pobi_krypto.encrypted.zip", "/home/student/Pobrane/pobi_krypto.decrypted.zip", key);
 //    cout << decr << '\n';
 
     return 0;

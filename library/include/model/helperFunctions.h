@@ -10,11 +10,11 @@ using std::bitset;
 
 class helperFunctions {
 public:
-    static bool isBinaryString(string);
+    static bool isBinaryString(const string &str);
 
-    static string stringToBinaryString(string words);
+    static string stringToBinaryString(const string &words);
 
-    static string binaryStringToString(string binaryString);
+    static string binaryStringToString(const string &binaryString);
 
     static char binaryCharsToChar(const char* str) ;
 
@@ -22,7 +22,7 @@ public:
 
     static string hexCharToBinaryString(char c);
 
-    static string binaryStringtoHexString(string binaryString);
+    static string binaryStringtoHexString(const string &binaryString);
 
     static string reverseString(string str);
 

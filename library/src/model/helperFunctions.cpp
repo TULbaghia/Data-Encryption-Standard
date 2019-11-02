@@ -6,18 +6,18 @@ using std::to_string;
 using std::cout;
 using std::reverse;
 
-bool helperFunctions::isBinaryString(string x) {
-    for(size_t i=0; i<x.length(); i++) {
-        if( !(x[i] == '1' || x[i] == '0') ) {
+bool helperFunctions::isBinaryString(const string &str) {
+    for(size_t i=0; i<str.length(); i++) {
+        if( !(str[i] == '1' || str[i] == '0') ) {
             return false;
         }
     }
     return true;
 }
 
-string helperFunctions::stringToBinaryString(string words) {
-    string binaryString = "";
-    for (char& _char : words) {
+string helperFunctions::stringToBinaryString(const string &words) {
+    string binaryString;
+    for (const char& _char : words) {
         binaryString += bitset<8>(_char).to_string();
     }
     reverse(binaryString.begin(), binaryString.end());
@@ -34,7 +34,7 @@ char helperFunctions::binaryCharsToChar(const char *str) {
     return parsed;
 }
 
-string helperFunctions::binaryStringToString(string binaryString) {
+string helperFunctions::binaryStringToString(const string &binaryString) {
     string ns;
     for(int i=0; i<binaryString.size()/8; i++) {
         string ssss = binaryString.substr(i*8, i*8+8);
@@ -47,7 +47,6 @@ std::string helperFunctions::hexStringToBinaryString(const string &hexString) {
     string bin;
     for(unsigned i = 0; i != hexString.length(); ++i)
         bin += hexCharToBinaryString(hexString[i]);
-    reverse(bin.begin(), bin.end());
     return bin;
 }
 
@@ -72,9 +71,9 @@ string helperFunctions::hexCharToBinaryString(char c) {
     }
 }
 
-string helperFunctions::binaryStringtoHexString(string binaryString) {
-    string hexText = "";
-    for (int i = 0; i < binaryString.size(); i += 4) {
+string helperFunctions::binaryStringtoHexString(const string &binaryString) {
+    string hexText;
+    for (size_t i = 0; i < binaryString.size(); i += 4) {
         string temp = binaryString.substr(i, 4);
         if (temp == "0000") {
             hexText += "0";

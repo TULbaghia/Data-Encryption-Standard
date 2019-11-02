@@ -13,6 +13,8 @@ public:
 
     virtual bool encrypt(string, string, Key &) = 0;
     virtual bool decrypt(string, string, Key &) = 0;
+
+    virtual ~Encryption();
 };
 
 
