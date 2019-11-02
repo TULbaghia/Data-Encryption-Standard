@@ -18,8 +18,7 @@ string DataStandardEncryption::encrypt(string message, Key &key) {
     stringstream is, os;
     is << message;
 
-    vector<bitset<48>> roundKey = initializeRoundKey(key);
-    ElectronicCodeBook(is, os, roundKey, ENCRYPT);
+    ElectronicCodeBook(is, os, key, ENCRYPT, HEXSTRING);
 
     return os.str();
 }
@@ -28,16 +27,9 @@ string DataStandardEncryption::decrypt(string message, Key &key) {
     stringstream is, os;
     is << message;
 
-    vector<bitset<48>> roundKey = initializeRoundKey(key);
-    reverse(roundKey.begin(), roundKey.end());
-    ElectronicCodeBook(is, os, roundKey, DECRYPT);
+    ElectronicCodeBook(is, os, key, DECRYPT, BINARY);
 
-    string outString = os.str();
-
-    outString = helperFunctions::binaryStringToString(outString);
-    outString.erase(std::find(outString.begin(), outString.end(), '\0'), outString.end());
-
-    return outString;
+    return os.str();
 }
 
 bool DataStandardEncryption::encrypt(string fileIn, string fileOut, Key &key) {
@@ -45,11 +37,14 @@ bool DataStandardEncryption::encrypt(string fileIn, string fileOut, Key &key) {
     ofstream os;
 
     is.open(fileIn, ios::binary);
+
+    //hack to create file if not exists
+    os.open(fileOut, ios::app);
+    os.close();
     os.open(fileOut, ios::binary);
 
     if(is.is_open() && os.is_open()) {
-        vector<bitset<48>> roundKey = initializeRoundKey(key);
-        ElectronicCodeBook(is, os, roundKey, ENCRYPT, BINARY);
+        ElectronicCodeBook(is, os, key, ENCRYPT, BINARY);
 
         return true;
     }
@@ -64,9 +59,7 @@ bool DataStandardEncryption::decrypt(string fileIn, string fileOut, Key &key) {
     os.open(fileOut, ios::binary);
 
     if(is.is_open() && os.is_open()) {
-        vector<bitset<48>> roundKey = initializeRoundKey(key);
-        reverse(roundKey.begin(), roundKey.end());
-        ElectronicCodeBook(is, os, roundKey, ENCRYPT, BINARY);
+        ElectronicCodeBook(is, os, key, DECRYPT, BINARY);
 
         return true;
     }
@@ -180,29 +173,32 @@ bitset<64> DataStandardEncryption::combineKey(const bitset<32> &bs1, const bitse
     return nBitset;
 }
 
-void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector<bitset<48>> roundKey, workMode workmode, writeMode writemode) {
+void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &key, workMode workmode, outputMode outMode) {
+    vector<bitset<48>> roundKey = initializeRoundKey(key);
+    if(workmode == DECRYPT) {
+        reverse(roundKey.begin(), roundKey.end());
+    }
     //One extra free space for null byte due to string conversion
     char plainText[9];
     while(is.get(&plainText[0], 9)) {
-        bool addedNulls = false;
         string fixedPlainText(plainText);
+//        std::cout << fixedPlainText.size() << " - " << fixedPlainText << '\n';
 
         for(size_t i = fixedPlainText.size(); i<8; i++) {
             fixedPlainText += '\0';
-            addedNulls = true;
         }
 
         string cypherText = blockPartial(fixedPlainText, roundKey);
 
-        if(writemode == BINARY) {
+        if(outMode == BINARY) {
             cypherText = helperFunctions::binaryStringToString(cypherText);
-            cypherText.erase(std::find(cypherText.begin(), cypherText.end(), '\0'), cypherText.end());
-        } else if(writemode == HEXSTRING) {
-            cypherText = helperFunctions::binaryStringtoHexString(cypherText);
-        } else if(writemode == BINARYSTRING) {
-            if(addedNulls) {
-
+            if(workmode == DECRYPT) {
+                cypherText.erase(std::find(cypherText.begin(), cypherText.end(), '\0'), cypherText.end());
             }
+        } else if(outMode == HEXSTRING) {
+            cypherText = helperFunctions::binaryStringtoHexString(cypherText);
+        } else if(outMode == BINARYSTRING) {
+
         }
 
         if(!(os << cypherText)) {

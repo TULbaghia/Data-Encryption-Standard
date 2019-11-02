@@ -21,7 +21,7 @@ public:
     bool decrypt(string fileIn, string fileOut, Key &key);
 
 private:
-    enum writeMode {
+    enum outputMode {
         BINARY, BINARYSTRING, HEXSTRING
     };
 
@@ -29,7 +29,7 @@ private:
         ENCRYPT, DECRYPT
     };
 
-    void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey, workMode workmode, writeMode writemode = BINARYSTRING);
+    void ElectronicCodeBook(istream& is, ostream& os, Key &key, workMode workmode, outputMode outemode = BINARYSTRING);
 
     string blockPartial(string plainText, const vector<bitset<48>> &roundKey);
 
