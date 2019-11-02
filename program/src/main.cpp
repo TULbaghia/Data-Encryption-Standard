@@ -19,19 +19,20 @@ using namespace std;
 
 int main() {
     Key key;
-    key.setKey(helperFunctions::binaryStringToString(helperFunctions::hexStringToBinaryString("AABB09182736CCDD")));
+    key.setKey("zaq1@WSX");
 
     Encryption *encryption = new DataStandardEncryption();
-//    string x = helperFunctions::hexStringToBinaryString("123456ABCD132332233");
-    string x = "Test1231231231";
+    string x = "1";
     string encrypted = encryption->encrypt(x, key);
 
 
     cout << "plainText:  " << x << '\n';
-    cout << "cypherText: " << encrypted << '\n';
+    cout << "cypherText: " << helperFunctions::binaryStringtoHexString(encrypted) << " [" << encrypted << "]" << '\n';
 
 
-    reverse(encrypted.begin(), encrypted.end());
+    cout << "\n\n---\nDECRYPT\n---\n\n";
+
+
     string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(encrypted), key);
     cout << "plainText:  " << decrypted << '\n';
 

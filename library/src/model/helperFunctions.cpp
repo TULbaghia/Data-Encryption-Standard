@@ -18,7 +18,7 @@ bool helperFunctions::isBinaryString(string x) {
 string helperFunctions::stringToBinaryString(string words) {
     string binaryString = "";
     for (char& _char : words) {
-        binaryString +=bitset<8>(_char).to_string();
+        binaryString += bitset<8>(_char).to_string();
     }
     reverse(binaryString.begin(), binaryString.end());
     return binaryString;
@@ -70,4 +70,67 @@ string helperFunctions::hexCharToBinaryString(char c) {
         case 'E': return "1110";
         case 'F': return "1111";
     }
+}
+
+string helperFunctions::binaryStringtoHexString(string binaryString) {
+    string hexText = "";
+    for (int i = 0; i < binaryString.size(); i += 4) {
+        string temp = binaryString.substr(i, 4);
+        if (temp == "0000") {
+            hexText += "0";
+        }
+        else if (temp == "0001") {
+            hexText += "1";
+        }
+        else if (temp == "0010") {
+            hexText += "2";
+        }
+        else if (temp == "0011") {
+            hexText += "3";
+        }
+        else if (temp == "0100") {
+            hexText += "4";
+        }
+        else if (temp == "0101") {
+            hexText += "5";
+        }
+        else if (temp == "0110") {
+            hexText += "6";
+        }
+        else if (temp == "0111") {
+            hexText += "7";
+        }
+        else if (temp == "1000") {
+            hexText += "8";
+        }
+        else if (temp == "1001") {
+            hexText += "9";
+        }
+        else if (temp == "1010") {
+            hexText += "A";
+        }
+        else if (temp == "1011") {
+            hexText += "B";
+        }
+        else if (temp == "1100") {
+            hexText += "C";
+        }
+        else if (temp == "1101") {
+            hexText += "D";
+        }
+        else if (temp == "1110") {
+            hexText += "E";
+        }
+        else if (temp == "1111") {
+            hexText += "F";
+        }
+
+    }
+    return hexText;
+
+}
+
+string helperFunctions::reverseString(string str) {
+    reverse(str.begin(), str.end());
+    return str;
 }

@@ -22,12 +22,34 @@ public:
 
 private:
     void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey);
-    string blockPartial(string plainText, vector<bitset<48>> &roundKey);
+
+    string blockPartial(string plainText, const vector<bitset<48>> &roundKey);
+
     vector<bitset<48>> initializeRoundKey(Key &key);
-    string permutation(string oldSet, const byte* array, size_t size);
+
     void shiftLeft(bitset<28> &bset, byte shiftBy);
-    bitset<48> xorBitset48(bitset<48> &bs1, bitset<48> &bs2);
-    bitset<32> xorBitset32(bitset<32> &bs1, bitset<32> &bs2);
+
+    bitset<48> xorBitset(const bitset<48> &bs1, const bitset<48> &bs2);
+
+    bitset<32> xorBitset(bitset<32> &bs1, bitset<32> &bs2);
+
+    bitset<56> permutation(const bitset<64> &oldSet, const byte *array);
+
+    bitset<28> getKeyPart(const bitset<56> &oldSet, const size_t &from);
+
+    bitset<56> combineKey(const bitset<28> &bs1, const bitset<28> &bs2);
+
+    bitset<48> permutation(const bitset<56> &oldSet, const byte *array);
+
+    bitset<64> permutation64s(const bitset<64> &oldSet, const byte *array);
+
+    bitset<32> getKeyPart(const bitset<64> &oldSet, const size_t &from);
+
+    bitset<48> permutation(const bitset<32> &oldSet, const byte *array);
+
+    bitset<32> permutation32s(const bitset<32> &oldSet, const byte *array);
+
+    bitset<64> combineKey(const bitset<32> &bs1, const bitset<32> &bs2);
 
     const byte keyParityDrop[56] = {
             57, 49, 41, 33, 25, 17,  9,  1,
@@ -127,7 +149,6 @@ private:
             35, 3, 43, 11, 51, 19, 59, 27,
             34, 2, 42, 10, 50, 18, 58, 26,
             33, 1, 41,  9, 49, 17, 57, 25 };
-
 };
 
 

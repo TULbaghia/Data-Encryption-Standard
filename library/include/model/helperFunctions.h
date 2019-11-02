@@ -22,6 +22,10 @@ public:
 
     static string hexCharToBinaryString(char c);
 
+    static string binaryStringtoHexString(string binaryString);
+
+    static string reverseString(string str);
+
 };
 
 
