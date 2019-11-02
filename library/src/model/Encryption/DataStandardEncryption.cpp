@@ -14,8 +14,9 @@ string DataStandardEncryption::encrypt(string message, Key &key) {
     stringstream is, os;
     is << message;
 
+    bool cryptionMode = 0;
     vector<bitset<48>> roundKey = initializeRoundKey(key);
-    ElectronicCodeBook(is, os, roundKey);
+    ElectronicCodeBook(is, os, roundKey, cryptionMode);
 
     return os.str();
 }
@@ -26,7 +27,8 @@ string DataStandardEncryption::decrypt(string message, Key &key) {
 
     vector<bitset<48>> roundKey = initializeRoundKey(key);
     reverse(roundKey.begin(), roundKey.end());
-    ElectronicCodeBook(is, os, roundKey);
+    bool cryptionMode = 1;
+    ElectronicCodeBook(is, os, roundKey, cryptionMode);
 
     string outString = os.str();
 
@@ -50,14 +52,15 @@ void DataStandardEncryption::decrypt(string fileIn, string fileOut, Key &key) {
 
 }
 
-void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector<bitset<48>> roundKey) {
+void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector<bitset<48>> roundKey, bool cryptionMode) {
     //One extra free space for null byte due to string conversion
     char plainText[9];
     while(is.get(&plainText[0], 9)) {
         string fixedPlainText(plainText);
-
-        for(char i=fixedPlainText.size(); i<8; i++) {
-            fixedPlainText += '\0';
+        if (cryptionMode == 0) {
+            for (char i = fixedPlainText.size(); i < 8; i++) {
+                fixedPlainText += '\0';
+            }
         }
 
         std::cout << fixedPlainText.size() << " - ";
