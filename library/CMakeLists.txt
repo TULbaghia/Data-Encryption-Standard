@@ -20,8 +20,7 @@ add_library(Library ${SOURCE_FILES})
 target_include_directories(Library PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
-if(MSVC)
-else()
+if (UNIX)
 
 #Unit Tests section
 
@@ -60,4 +59,4 @@ add_test(LibraryTest Test
 
 #add_test(LibraryTest Test)
 
-endif()
+endif (UNIX)
