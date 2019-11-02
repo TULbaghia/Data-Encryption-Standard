@@ -19,11 +19,11 @@ using namespace std;
 
 int main() {
     Key key;
-    key.setKey("abecedes");
+    key.setKey(helperFunctions::binaryStringToString(helperFunctions::hexStringToBinaryString("AABB09182736CCDD")));
 
     Encryption *encryption = new DataStandardEncryption();
 //    string x = helperFunctions::hexStringToBinaryString("123456ABCD132332233");
-    string x = "konstantynopolitanczykowianeczka1"; //Test1231231231
+    string x = "Test1231231231";
     string encrypted = encryption->encrypt(x, key);
 
 

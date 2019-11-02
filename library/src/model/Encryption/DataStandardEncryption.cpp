@@ -14,9 +14,8 @@ string DataStandardEncryption::encrypt(string message, Key &key) {
     stringstream is, os;
     is << message;
 
-    bool cryptionMode = 0;
     vector<bitset<48>> roundKey = initializeRoundKey(key);
-    ElectronicCodeBook(is, os, roundKey, cryptionMode);
+    ElectronicCodeBook(is, os, roundKey);
 
     return os.str();
 }
@@ -27,18 +26,12 @@ string DataStandardEncryption::decrypt(string message, Key &key) {
 
     vector<bitset<48>> roundKey = initializeRoundKey(key);
     reverse(roundKey.begin(), roundKey.end());
-    bool cryptionMode = 1;
-    ElectronicCodeBook(is, os, roundKey, cryptionMode);
+    ElectronicCodeBook(is, os, roundKey);
 
     string outString = os.str();
 
-    std::cout << outString << "\n";
-
     reverse(outString.begin(), outString.end());
     outString = helperFunctions::binaryStringToString(outString);
-    for(int i=0; i<outString.size(); i++) {
-        std::cout << "[" << (int)outString[i] << "]";
-    }
     outString.erase(std::find(outString.begin(), outString.end(), '\0'), outString.end());
 
     return outString;
@@ -52,22 +45,26 @@ void DataStandardEncryption::decrypt(string fileIn, string fileOut, Key &key) {
 
 }
 
-void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector<bitset<48>> roundKey, bool cryptionMode) {
+void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector<bitset<48>> roundKey) {
     //One extra free space for null byte due to string conversion
     char plainText[9];
     while(is.get(&plainText[0], 9)) {
         string fixedPlainText(plainText);
-        if (cryptionMode == 0) {
-            for (char i = fixedPlainText.size(); i < 8; i++) {
+
+        char nullLength = 8-fixedPlainText.size();
+        for(char i=fixedPlainText.size(); i<8; i++) {
+            if(i<7 || nullLength==1) {
                 fixedPlainText += '\0';
+            } else {
+                fixedPlainText += nullLength;
             }
         }
 
-        std::cout << fixedPlainText.size() << " - ";
-        for(int i=0; i<fixedPlainText.size(); i++) {
-            std::cout << "[" << (int)fixedPlainText[i] << "]";
-        }
-        std::cout << "\n";
+//        std::cout << fixedPlainText.size() << " - ";
+//        for(int i=0; i<fixedPlainText.size(); i++) {
+//            std::cout << "[" << (int)fixedPlainText[i] << "]";
+//        }
+//        std::cout << "\n";
 
 
         string text_cypherText = blockPartial(fixedPlainText, roundKey);
