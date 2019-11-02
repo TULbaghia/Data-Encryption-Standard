@@ -21,7 +21,7 @@ public:
     void decrypt(string fileIn, string fileOut, Key &key);
 
 private:
-    void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey, bool cryptionMode);
+    void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey);
     string blockPartial(string plainText, vector<bitset<48>> &roundKey);
     vector<bitset<48>> initializeRoundKey(Key &key);
     string permutation(string oldSet, const byte* array, size_t size);
