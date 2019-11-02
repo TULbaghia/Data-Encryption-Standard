@@ -30,13 +30,8 @@ string DataStandardEncryption::decrypt(string message, Key &key) {
 
     string outString = os.str();
 
-    std::cout << outString << "\n";
-
     reverse(outString.begin(), outString.end());
     outString = helperFunctions::binaryStringToString(outString);
-    for(int i=0; i<outString.size(); i++) {
-        std::cout << "[" << (int)outString[i] << "]";
-    }
     outString.erase(std::find(outString.begin(), outString.end(), '\0'), outString.end());
 
     return outString;
@@ -56,15 +51,20 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, vector
     while(is.get(&plainText[0], 9)) {
         string fixedPlainText(plainText);
 
+        char nullLength = 8-fixedPlainText.size();
         for(char i=fixedPlainText.size(); i<8; i++) {
-            fixedPlainText += '\0';
+            if(i<7 || nullLength==1) {
+                fixedPlainText += '\0';
+            } else {
+                fixedPlainText += nullLength;
+            }
         }
 
-        std::cout << fixedPlainText.size() << " - ";
-        for(int i=0; i<fixedPlainText.size(); i++) {
-            std::cout << "[" << (int)fixedPlainText[i] << "]";
-        }
-        std::cout << "\n";
+//        std::cout << fixedPlainText.size() << " - ";
+//        for(int i=0; i<fixedPlainText.size(); i++) {
+//            std::cout << "[" << (int)fixedPlainText[i] << "]";
+//        }
+//        std::cout << "\n";
 
 
         string text_cypherText = blockPartial(fixedPlainText, roundKey);
