@@ -17,11 +17,19 @@ public:
     string encrypt(string message, Key &key);
     string decrypt(string message, Key &key);
 
-    void encrypt(string fileIn, string fileOut, Key &key);
-    void decrypt(string fileIn, string fileOut, Key &key);
+    bool encrypt(string fileIn, string fileOut, Key &key);
+    bool decrypt(string fileIn, string fileOut, Key &key);
 
 private:
-    void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey);
+    enum writeMode {
+        BINARY, BINARYSTRING, HEXSTRING
+    };
+
+    enum workMode {
+        ENCRYPT, DECRYPT
+    };
+
+    void ElectronicCodeBook(istream& is, ostream& os, vector<bitset<48>> roundKey, workMode workmode, writeMode writemode = BINARYSTRING);
 
     string blockPartial(string plainText, const vector<bitset<48>> &roundKey);
 
