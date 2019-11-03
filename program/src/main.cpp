@@ -48,10 +48,12 @@ int main() {
 //    bool decr = encryption->decrypt("/home/student/test.o", "/home/student/test.decr", key);
 //    cout << decr << '\n';
 
-//    bool encr = encryption->encrypt("/home/student/Pobrane/pobi_krypto.zip", "/home/student/Pobrane/pobi_krypto.encrypted.zip", key);
-//    cout << encr << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    //BIG FILE HANDLE
+
+//    bool encr = encryption->encrypt("/home/student/Pobrane/VBoxClient", "/home/student/Pobrane/VBoxClient.encrypted", key);
+//    cout << encr << "\n\n\n\n";
 //
-//    bool decr = encryption->decrypt("/home/student/Pobrane/pobi_krypto.encrypted.zip", "/home/student/Pobrane/pobi_krypto.decrypted.zip", key);
+//    bool decr = encryption->decrypt("/home/student/Pobrane/VBoxClient.encrypted", "/home/student/Pobrane/VBoxClient.decrypted", key);
 //    cout << decr << '\n';
 
     return 0;
