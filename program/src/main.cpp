@@ -49,7 +49,7 @@ int main() {
 //    cout << decr << '\n';
 
 //    bool encr = encryption->encrypt("/home/student/Pobrane/pobi_krypto.zip", "/home/student/Pobrane/pobi_krypto.encrypted.zip", key);
-//    cout << encr << '\n';
+//    cout << encr << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 //
 //    bool decr = encryption->decrypt("/home/student/Pobrane/pobi_krypto.encrypted.zip", "/home/student/Pobrane/pobi_krypto.decrypted.zip", key);
 //    cout << decr << '\n';
