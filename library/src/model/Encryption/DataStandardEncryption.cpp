@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <deque>
 
 using std::stringstream;
 using std::fill_n;
@@ -46,8 +47,12 @@ bool DataStandardEncryption::encrypt(string fileIn, string fileOut, Key &key) {
     if(is.is_open() && os.is_open()) {
         ElectronicCodeBook(is, os, key, ENCRYPT, BINARY);
 
+        is.close();
+        os.close();
         return true;
     }
+    is.close();
+    os.close();
     return false;
 }
 
@@ -61,8 +66,12 @@ bool DataStandardEncryption::decrypt(string fileIn, string fileOut, Key &key) {
     if(is.is_open() && os.is_open()) {
         ElectronicCodeBook(is, os, key, DECRYPT, BINARY);
 
+        is.close();
+        os.close();
         return true;
     }
+    is.close();
+    os.close();
     return false;
 }
 
@@ -175,24 +184,34 @@ bitset<64> DataStandardEncryption::combineKey(const bitset<32> &bs1, const bitse
 
 void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &key, workMode workmode, outputMode outMode) {
     vector<bitset<48>> roundKey = initializeRoundKey(key);
+
     if(workmode == DECRYPT) {
         reverse(roundKey.begin(), roundKey.end());
     }
-    //One extra free space for null byte due to string conversion
-    char plainText[9];
-    while(is.get(&plainText[0], 9)) {
-        string fixedPlainText(plainText);
-//        std::cout << fixedPlainText.size() << " - " << fixedPlainText << '\n';
 
-        for(size_t i = fixedPlainText.size(); i<8; i++) {
-            fixedPlainText += '\0';
+    std::deque<unsigned char> buffStream(std::istreambuf_iterator<char>(is), {});
+
+    int missingBytes = 8 - buffStream.size()%8;
+    while(missingBytes>0 && missingBytes != 8) {
+        missingBytes--;
+        buffStream.push_back('\0');
+    }
+
+    while (!buffStream.empty()) {
+        string fixedPlainText;
+        for(int i=0; i<8; i++) {
+            fixedPlainText += buffStream.front();
+            buffStream.pop_front();
         }
+
+        std::cout << fixedPlainText.size() << " - " << fixedPlainText << '\n';
 
         string cypherText = blockPartial(fixedPlainText, roundKey);
 
         if(outMode == BINARY) {
             cypherText = helperFunctions::binaryStringToString(cypherText);
-            if(workmode == DECRYPT) {
+            if(workmode == DECRYPT && buffStream.empty()) {
+//                cypherText.pop_back();
                 cypherText.erase(std::find(cypherText.begin(), cypherText.end(), '\0'), cypherText.end());
             }
         } else if(outMode == HEXSTRING) {
@@ -204,8 +223,6 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
         if(!(os << cypherText)) {
             std::cerr << "Cant write to stream" << "\n";
         }
-
-        fill_n(plainText, 9, 0);
     }
 }
 
