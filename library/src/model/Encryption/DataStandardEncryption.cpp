@@ -4,9 +4,9 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <fstream>
 #include <deque>
+#include <iostream>
 
 using std::stringstream;
 using std::fill_n;
@@ -14,6 +14,9 @@ using std::reverse;
 using std::ifstream;
 using std::ofstream;
 using std::ios;
+using std::istreambuf_iterator;
+using std::deque;
+using std::cerr;
 
 string DataStandardEncryption::encrypt(string message, Key &key) {
     stringstream is, os;
@@ -189,12 +192,17 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
         reverse(roundKey.begin(), roundKey.end());
     }
 
-    std::deque<unsigned char> buffStream(std::istreambuf_iterator<char>(is), {});
+    deque<unsigned char> buffStream(istreambuf_iterator<char>(is), {});
 
     int missingBytes = 8 - buffStream.size()%8;
-    while(missingBytes>0 && missingBytes != 8) {
-        missingBytes--;
-        buffStream.push_back('\0');
+    if(missingBytes != 8) {
+        for(char i=0; i<missingBytes; i++) {
+            if(i != missingBytes-1) {
+                buffStream.push_back('\0');
+            } else {
+                buffStream.push_back(missingBytes);
+            }
+        }
     }
 
     while (!buffStream.empty()) {
@@ -204,24 +212,35 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
             buffStream.pop_front();
         }
 
-        std::cout << fixedPlainText.size() << " - " << fixedPlainText << '\n';
-
         string cypherText = blockPartial(fixedPlainText, roundKey);
+
+        if(workmode == DECRYPT && buffStream.empty()) {
+            cypherText = helperFunctions::binaryStringToString(cypherText);
+            bool isPadd = true;
+            int paddByte = cypherText[7];
+            for(char i=cypherText.size()-paddByte; (paddByte > 1 && isPadd); i++, paddByte--) {
+                if(cypherText[i] != '\0' ) isPadd = false;
+            }
+
+            if(paddByte) {
+                paddByte = cypherText[7];
+
+                for (int i = 0; i < paddByte; i++) {
+                    cypherText.pop_back();
+                }
+            }
+            cypherText = helperFunctions::reverseString(helperFunctions::stringToBinaryString(cypherText));
+        }
 
         if(outMode == BINARY) {
             cypherText = helperFunctions::binaryStringToString(cypherText);
-            if(workmode == DECRYPT && buffStream.empty()) {
-//                cypherText.pop_back();
-                cypherText.erase(std::find(cypherText.begin(), cypherText.end(), '\0'), cypherText.end());
-            }
         } else if(outMode == HEXSTRING) {
             cypherText = helperFunctions::binaryStringtoHexString(cypherText);
         } else if(outMode == BINARYSTRING) {
 
         }
-
         if(!(os << cypherText)) {
-            std::cerr << "Cant write to stream" << "\n";
+            cerr << "Cant write to stream" << "\n";
         }
     }
 }
