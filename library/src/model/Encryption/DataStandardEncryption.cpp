@@ -222,13 +222,16 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
                 if(cypherText[i] != '\0' ) isPadd = false;
             }
 
-            if(paddByte) {
-                paddByte = cypherText[7];
+            paddByte = cypherText[7];
 
+            if(isPadd) {
                 for (int i = 0; i < paddByte; i++) {
                     cypherText.pop_back();
                 }
+            } else if(paddByte == 1) {
+                cypherText.pop_back();
             }
+
             cypherText = helperFunctions::reverseString(helperFunctions::stringToBinaryString(cypherText));
         }
 
