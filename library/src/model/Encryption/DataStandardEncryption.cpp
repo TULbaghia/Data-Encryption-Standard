@@ -87,7 +87,7 @@ vector<bitset<48>> DataStandardEncryption::initializeRoundKey(Key &key) {
     bitset<28> rightKeyPart = getKeyPart(noParityKey, 28);
 
     vector<bitset<48>> roundKey;
-    for(size_t i=0; i<16; i++) {
+    for(char i=0; i<16; i++) {
         shiftLeft(leftKeyPart, shiftsTable[i]);
         shiftLeft(rightKeyPart, shiftsTable[i]);
 
@@ -196,7 +196,7 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
 
     int missingBytes = 8 - buffStream.size()%8;
     if(missingBytes != 8) {
-        for(char i=0; i<missingBytes; i++) {
+        for(size_t i=0; i<missingBytes; i++) {
             if(i != missingBytes-1) {
                 buffStream.push_back('\0');
             } else {
@@ -218,7 +218,7 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
             cypherText = helperFunctions::binaryStringToString(cypherText);
             bool isPadd = true;
             int paddByte = cypherText[7];
-            for(char i=cypherText.size()-paddByte; (paddByte > 1 && isPadd); i++, paddByte--) {
+            for(size_t i=cypherText.size()-paddByte; (paddByte > 1 && isPadd); i++, paddByte--) {
                 if(cypherText[i] != '\0' ) isPadd = false;
             }
 
