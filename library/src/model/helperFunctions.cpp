@@ -36,7 +36,7 @@ char helperFunctions::binaryCharsToChar(const char *str) {
 
 string helperFunctions::binaryStringToString(const string &binaryString) {
     string ns;
-    for(int i=0; i<binaryString.size()/8; i++) {
+    for(size_t i=0; i<binaryString.size()/8; i++) {
         string ssss = binaryString.substr(i*8, i*8+8);
         ns += static_cast<char>(binaryCharsToChar(ssss.c_str()));
     }
@@ -69,6 +69,7 @@ string helperFunctions::hexCharToBinaryString(char c) {
         case 'E': return "1110";
         case 'F': return "1111";
     }
+    return "";
 }
 
 string helperFunctions::binaryStringtoHexString(const string &binaryString) {
@@ -126,7 +127,6 @@ string helperFunctions::binaryStringtoHexString(const string &binaryString) {
 
     }
     return hexText;
-
 }
 
 string helperFunctions::reverseString(string str) {
