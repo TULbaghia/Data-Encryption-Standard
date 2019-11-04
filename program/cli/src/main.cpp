@@ -18,6 +18,8 @@ using namespace std;
 
 
 int main() {
+    cout << "Interface CLI" << '\n';
+
     Key key;
     key.setKey("zaq1@WSX");
 
@@ -28,13 +30,12 @@ int main() {
     string x = "1234567";
     string encrypted = encryption->encrypt(x, key);
 
-    cout << "\n---\nENCRYPTED\n---\n\n";
 
+    cout << "---PlainText---" << '\n';
     cout << "plainText:  " << x << '\n';
+    cout << "---Encrypted---" << '\n';
     cout << "cypherText: " << encrypted << '\n';
-
-
-    cout << "\n---\nDECRYPTED\n---\n\n";
+    cout << "---PlainText_Decrypted---" << '\n';
 
 
     string decrypted = encryption->decrypt(helperFunctions::binaryStringToString(helperFunctions::hexStringToBinaryString(encrypted)), key);
