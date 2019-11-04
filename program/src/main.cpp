@@ -25,7 +25,7 @@ int main() {
 
     //TEXT HANDLE
 
-    string x = "Witaj swiecie";
+    string x = "1234567";
     string encrypted = encryption->encrypt(x, key);
 
     cout << "\n---\nENCRYPTED\n---\n\n";

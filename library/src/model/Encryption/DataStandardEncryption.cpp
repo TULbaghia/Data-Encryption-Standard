@@ -196,7 +196,7 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
 
     int missingBytes = 8 - buffStream.size()%8;
     if(missingBytes != 8) {
-        for(char i=0; i<missingBytes; i++) {
+        for(int i=0; i<missingBytes; i++) {
             if(i != missingBytes-1) {
                 buffStream.push_back('\0');
             } else {
@@ -218,17 +218,20 @@ void DataStandardEncryption::ElectronicCodeBook(istream &is, ostream &os, Key &k
             cypherText = helperFunctions::binaryStringToString(cypherText);
             bool isPadd = true;
             int paddByte = cypherText[7];
-            for(char i=cypherText.size()-paddByte; (paddByte > 1 && isPadd); i++, paddByte--) {
+            for(size_t i=cypherText.size()-paddByte; (paddByte > 1 && isPadd); i++, paddByte--) {
                 if(cypherText[i] != '\0' ) isPadd = false;
             }
 
-            if(paddByte) {
-                paddByte = cypherText[7];
+            paddByte = cypherText[7];
 
+            if(isPadd) {
                 for (int i = 0; i < paddByte; i++) {
                     cypherText.pop_back();
                 }
+            } else if(paddByte == 1) {
+                cypherText.pop_back();
             }
+
             cypherText = helperFunctions::reverseString(helperFunctions::stringToBinaryString(cypherText));
         }
 
