@@ -1,2 +1,6 @@
 cmake-*/
 .idea/
+*/gui/x64
+*/gui/Debug
+.vs/
+out/build
