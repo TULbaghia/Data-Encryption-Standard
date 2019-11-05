@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Project1DES2 {
+namespace DES_GUI {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -10,12 +10,12 @@ namespace Project1DES2 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for MyForm
+	/// Summary for myGUI
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class myGUI : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		myGUI(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace Project1DES2 {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm()
+		~myGUI()
 		{
 			if (components)
 			{
@@ -58,7 +58,7 @@ namespace Project1DES2 {
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void myGUI_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	};
 }

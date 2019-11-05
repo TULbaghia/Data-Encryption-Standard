@@ -1,4 +1,4 @@
-#include "MyForm.h"
+#include "myGUI.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -8,6 +8,6 @@ void MainGUI(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	//WinformCDemo is your project name
-	Project1DES2::MyForm form;
+	DES_GUI::myGUI form;
 	Application::Run(% form);
 }
