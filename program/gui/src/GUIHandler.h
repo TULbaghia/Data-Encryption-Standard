@@ -5,17 +5,21 @@
 using std::string;
 
 public ref class GUIHandler {
-private:
+public:
 	string* key;
-	string* key_dataType;
+	int keyPreviousState;
+	int keyMaxLength;
 
-	string* text;
-	string* text_dataTypeIn;
-	string* text_dataTypeOut;
+	string* textIn;
+	int textInPreviousState;
+
+	string* textOut;
+	int textOutPreviousState;
+
 
 
 public:
-
+	GUIHandler();
 
 };
 

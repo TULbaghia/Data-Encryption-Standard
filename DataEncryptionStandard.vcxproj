@@ -112,6 +112,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -134,6 +135,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="program\gui\src\GUIUtils.cpp" />
     <ClCompile Include="program\gui\src\GUIHandler.cpp" />
     <ClCompile Include="library\src\model\Encryption\DataStandardEncryption.cpp" />
     <ClCompile Include="library\src\model\Encryption\Encryption.cpp" />
@@ -141,9 +143,9 @@
     <ClCompile Include="library\src\model\Key.cpp" />
     <ClCompile Include="program\gui\myGUI.cpp" />
     <ClCompile Include="program\cli\src\main.cpp" />
-    <ClCompile Include="program\gui\src\GUIUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="program\gui\src\GUIUtils.h" />
     <ClInclude Include="program\gui\src\GUIHandler.h" />
     <ClInclude Include="library\include\model\Encryption\DataStandardEncryption.h" />
     <ClInclude Include="library\include\model\Encryption\Encryption.h" />
