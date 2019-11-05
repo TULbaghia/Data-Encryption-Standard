@@ -10,12 +10,12 @@ namespace DES_GUI {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for MyForm
+	/// Summary for myGUI
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class myGUI : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		myGUI(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace DES_GUI {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm()
+		~myGUI()
 		{
 			if (components)
 			{
@@ -58,7 +58,7 @@ namespace DES_GUI {
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void myGUI_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	};
 }
