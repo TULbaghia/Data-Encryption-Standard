@@ -23,7 +23,7 @@
     <ProjectGuid>{5FE378F3-12DF-455E-B602-40E01BB72884}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>Project1DES2</RootNamespace>
+    <RootNamespace>DataEncryptionStandard</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

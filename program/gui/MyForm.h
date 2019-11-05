@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Project1DES2 {
+namespace DES_GUI {
 
 	using namespace System;
 	using namespace System::ComponentModel;

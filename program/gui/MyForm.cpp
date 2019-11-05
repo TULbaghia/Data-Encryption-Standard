@@ -8,6 +8,6 @@ void MainGUI(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	//WinformCDemo is your project name
-	Project1DES2::MyForm form;
+	DES_GUI::MyForm form;
 	Application::Run(% form);
 }
