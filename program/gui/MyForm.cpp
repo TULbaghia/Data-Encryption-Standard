@@ -4,10 +4,10 @@ using namespace System;
 using namespace System::Windows::Forms;
 
 [STAThreadAttribute]
-void Main(array<String^>^ args) {
+void MainGUI(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	//WinformCDemo is your project name
-	Project2::MyForm form;
+	Project1DES2::MyForm form;
 	Application::Run(% form);
 }

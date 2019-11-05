@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{D7933301-274F-479A-9AFE-D4DEAFBA8D33}</ProjectGuid>
+    <ProjectGuid>{5FE378F3-12DF-455E-B602-40E01BB72884}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>Binary_GUI</RootNamespace>
+    <RootNamespace>Project1DES2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -100,11 +100,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\pawel\source\repos\Project1_DES2\library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>Main</EntryPointSymbol>
+      <EntryPointSymbol>MainGUI</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,16 +134,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="library\src\model\Encryption\DataStandardEncryption.cpp" />
+    <ClCompile Include="library\src\model\Encryption\Encryption.cpp" />
+    <ClCompile Include="library\src\model\helperFunctions.cpp" />
+    <ClCompile Include="library\src\model\Key.cpp" />
+    <ClCompile Include="program\gui\MyForm.cpp" />
+    <ClCompile Include="program\cli\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="library\include\model\Encryption\DataStandardEncryption.h" />
+    <ClInclude Include="library\include\model\Encryption\Encryption.h" />
+    <ClInclude Include="library\include\model\helperFunctions.h" />
+    <ClInclude Include="library\include\model\Key.h" />
+    <ClInclude Include="program\gui\MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <FileType>Makefile</FileType>
+    </Text>
+    <Text Include="library\CMakeLists.txt" />
+    <Text Include="program\cli\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="program\gui\MyForm.resx">
+      <DependentUpon>program\gui\MyForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

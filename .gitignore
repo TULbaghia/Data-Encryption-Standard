@@ -1,6 +1,8 @@
 cmake-*/
 .idea/
-*/gui/x64
-*/gui/Debug
+Debug/
+out/
+x64/
 .vs/
-out/build
+*.vcxproj.user
+*.vcxproj.filters
