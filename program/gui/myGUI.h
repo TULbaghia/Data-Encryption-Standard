@@ -158,7 +158,7 @@ namespace DES_GUI {
 			// 
 			// keyLoadFromFileButton
 			// 
-			this->keyLoadFromFileButton->Location = System::Drawing::Point(9, 214);
+			this->keyLoadFromFileButton->Location = System::Drawing::Point(9, 200);
 			this->keyLoadFromFileButton->Name = L"keyLoadFromFileButton";
 			this->keyLoadFromFileButton->Size = System::Drawing::Size(231, 35);
 			this->keyLoadFromFileButton->TabIndex = 0;
@@ -190,7 +190,7 @@ namespace DES_GUI {
 			// 
 			this->keyRadioButton1->AutoSize = true;
 			this->keyRadioButton1->Checked = true;
-			this->keyRadioButton1->Location = System::Drawing::Point(6, 19);
+			this->keyRadioButton1->Location = System::Drawing::Point(6, 23);
 			this->keyRadioButton1->Name = L"keyRadioButton1";
 			this->keyRadioButton1->Size = System::Drawing::Size(78, 17);
 			this->keyRadioButton1->TabIndex = 3;
@@ -202,7 +202,7 @@ namespace DES_GUI {
 			// keyRadioButton2
 			// 
 			this->keyRadioButton2->AutoSize = true;
-			this->keyRadioButton2->Location = System::Drawing::Point(6, 42);
+			this->keyRadioButton2->Location = System::Drawing::Point(6, 46);
 			this->keyRadioButton2->Name = L"keyRadioButton2";
 			this->keyRadioButton2->Size = System::Drawing::Size(47, 17);
 			this->keyRadioButton2->TabIndex = 4;
@@ -220,6 +220,7 @@ namespace DES_GUI {
 			this->keyRadioButton3->TabIndex = 5;
 			this->keyRadioButton3->Text = L"BIN";
 			this->keyRadioButton3->UseVisualStyleBackColor = true;
+			this->keyRadioButton3->Visible = false;
 			this->keyRadioButton3->CheckedChanged += gcnew System::EventHandler(this, &myGUI::keyRadioButton3_CheckedChanged);
 			// 
 			// groupBox1
@@ -229,14 +230,14 @@ namespace DES_GUI {
 			this->groupBox1->Controls->Add(this->keyRadioButton2);
 			this->groupBox1->Location = System::Drawing::Point(9, 113);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(231, 95);
+			this->groupBox1->Size = System::Drawing::Size(231, 75);
 			this->groupBox1->TabIndex = 6;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Klucz w formacie";
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(9, 302);
+			this->button3->Location = System::Drawing::Point(9, 287);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(231, 35);
 			this->button3->TabIndex = 7;
@@ -252,16 +253,16 @@ namespace DES_GUI {
 			this->groupBox2->Controls->Add(this->keyTextBox);
 			this->groupBox2->Controls->Add(this->keyLoadFromFileButton);
 			this->groupBox2->Controls->Add(this->groupBox1);
-			this->groupBox2->Location = System::Drawing::Point(626, 12);
+			this->groupBox2->Location = System::Drawing::Point(626, 13);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(246, 346);
+			this->groupBox2->Size = System::Drawing::Size(246, 330);
 			this->groupBox2->TabIndex = 9;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Ustawienia klucza";
 			// 
 			// keySaveToFileButton
 			// 
-			this->keySaveToFileButton->Location = System::Drawing::Point(9, 258);
+			this->keySaveToFileButton->Location = System::Drawing::Point(9, 243);
 			this->keySaveToFileButton->Name = L"keySaveToFileButton";
 			this->keySaveToFileButton->Size = System::Drawing::Size(231, 35);
 			this->keySaveToFileButton->TabIndex = 8;
