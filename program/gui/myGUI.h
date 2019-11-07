@@ -154,11 +154,11 @@ namespace DES_GUI {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->groupBox10 = (gcnew System::Windows::Forms::GroupBox());
-			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
-			this->groupBox11 = (gcnew System::Windows::Forms::GroupBox());
 			this->groupBox12 = (gcnew System::Windows::Forms::GroupBox());
-			this->textStatus = (gcnew System::Windows::Forms::Label());
 			this->fileStatus = (gcnew System::Windows::Forms::Label());
+			this->groupBox11 = (gcnew System::Windows::Forms::GroupBox());
+			this->textStatus = (gcnew System::Windows::Forms::Label());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
@@ -169,8 +169,8 @@ namespace DES_GUI {
 			this->groupBox8->SuspendLayout();
 			this->groupBox7->SuspendLayout();
 			this->groupBox10->SuspendLayout();
-			this->groupBox11->SuspendLayout();
 			this->groupBox12->SuspendLayout();
+			this->groupBox11->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// keyLoadFromFileButton
@@ -401,6 +401,7 @@ namespace DES_GUI {
 			this->textInTextBox->Location = System::Drawing::Point(6, 40);
 			this->textInTextBox->Multiline = true;
 			this->textInTextBox->Name = L"textInTextBox";
+			this->textInTextBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textInTextBox->Size = System::Drawing::Size(230, 195);
 			this->textInTextBox->TabIndex = 0;
 			this->textInTextBox->TextChanged += gcnew System::EventHandler(this, &myGUI::textInTextBox_TextChanged);
@@ -440,6 +441,7 @@ namespace DES_GUI {
 			this->textOutTextBox->Multiline = true;
 			this->textOutTextBox->Name = L"textOutTextBox";
 			this->textOutTextBox->ReadOnly = true;
+			this->textOutTextBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textOutTextBox->Size = System::Drawing::Size(230, 195);
 			this->textOutTextBox->TabIndex = 1;
 			this->textOutTextBox->TextChanged += gcnew System::EventHandler(this, &myGUI::textOutTextBox_TextChanged);
@@ -605,16 +607,6 @@ namespace DES_GUI {
 			this->groupBox10->TabStop = false;
 			this->groupBox10->Text = L"Informacje dodatkowe";
 			// 
-			// groupBox11
-			// 
-			this->groupBox11->Controls->Add(this->textStatus);
-			this->groupBox11->Location = System::Drawing::Point(7, 19);
-			this->groupBox11->Name = L"groupBox11";
-			this->groupBox11->Size = System::Drawing::Size(232, 40);
-			this->groupBox11->TabIndex = 0;
-			this->groupBox11->TabStop = false;
-			this->groupBox11->Text = L"Status tekstu";
-			// 
 			// groupBox12
 			// 
 			this->groupBox12->Controls->Add(this->fileStatus);
@@ -625,15 +617,6 @@ namespace DES_GUI {
 			this->groupBox12->TabStop = false;
 			this->groupBox12->Text = L"Status pliku";
 			// 
-			// textStatus
-			// 
-			this->textStatus->AutoSize = true;
-			this->textStatus->Location = System::Drawing::Point(15, 18);
-			this->textStatus->Name = L"textStatus";
-			this->textStatus->Size = System::Drawing::Size(68, 13);
-			this->textStatus->TabIndex = 0;
-			this->textStatus->Text = L"Oczekiwanie";
-			// 
 			// fileStatus
 			// 
 			this->fileStatus->AutoSize = true;
@@ -642,6 +625,25 @@ namespace DES_GUI {
 			this->fileStatus->Size = System::Drawing::Size(68, 13);
 			this->fileStatus->TabIndex = 0;
 			this->fileStatus->Text = L"Oczekiwanie";
+			// 
+			// groupBox11
+			// 
+			this->groupBox11->Controls->Add(this->textStatus);
+			this->groupBox11->Location = System::Drawing::Point(7, 19);
+			this->groupBox11->Name = L"groupBox11";
+			this->groupBox11->Size = System::Drawing::Size(232, 40);
+			this->groupBox11->TabIndex = 0;
+			this->groupBox11->TabStop = false;
+			this->groupBox11->Text = L"Status tekstu";
+			// 
+			// textStatus
+			// 
+			this->textStatus->AutoSize = true;
+			this->textStatus->Location = System::Drawing::Point(15, 18);
+			this->textStatus->Name = L"textStatus";
+			this->textStatus->Size = System::Drawing::Size(68, 13);
+			this->textStatus->TabIndex = 0;
+			this->textStatus->Text = L"Oczekiwanie";
 			// 
 			// myGUI
 			// 
@@ -673,10 +675,10 @@ namespace DES_GUI {
 			this->groupBox7->ResumeLayout(false);
 			this->groupBox7->PerformLayout();
 			this->groupBox10->ResumeLayout(false);
-			this->groupBox11->ResumeLayout(false);
-			this->groupBox11->PerformLayout();
 			this->groupBox12->ResumeLayout(false);
 			this->groupBox12->PerformLayout();
+			this->groupBox11->ResumeLayout(false);
+			this->groupBox11->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
