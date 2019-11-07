@@ -32,6 +32,14 @@ namespace DES_GUI {
 
 	private: System::Windows::Forms::Button^ fileInButton;
 	private: System::Windows::Forms::Button^ fileMoveOutToIn;
+	private: System::Windows::Forms::GroupBox^ groupBox10;
+	private: System::Windows::Forms::GroupBox^ groupBox12;
+	private: System::Windows::Forms::Label^ fileStatus;
+
+	private: System::Windows::Forms::GroupBox^ groupBox11;
+	private: System::Windows::Forms::Label^ textStatus;
+
+	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
 
 	public:
 
@@ -145,6 +153,12 @@ namespace DES_GUI {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->groupBox10 = (gcnew System::Windows::Forms::GroupBox());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
+			this->groupBox11 = (gcnew System::Windows::Forms::GroupBox());
+			this->groupBox12 = (gcnew System::Windows::Forms::GroupBox());
+			this->textStatus = (gcnew System::Windows::Forms::Label());
+			this->fileStatus = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
@@ -154,6 +168,9 @@ namespace DES_GUI {
 			this->groupBox9->SuspendLayout();
 			this->groupBox8->SuspendLayout();
 			this->groupBox7->SuspendLayout();
+			this->groupBox10->SuspendLayout();
+			this->groupBox11->SuspendLayout();
+			this->groupBox12->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// keyLoadFromFileButton
@@ -543,9 +560,9 @@ namespace DES_GUI {
 			this->groupBox7->Controls->Add(this->label6);
 			this->groupBox7->Controls->Add(this->label5);
 			this->groupBox7->Controls->Add(this->label4);
-			this->groupBox7->Location = System::Drawing::Point(626, 448);
+			this->groupBox7->Location = System::Drawing::Point(626, 463);
 			this->groupBox7->Name = L"groupBox7";
-			this->groupBox7->Size = System::Drawing::Size(246, 101);
+			this->groupBox7->Size = System::Drawing::Size(246, 86);
 			this->groupBox7->TabIndex = 12;
 			this->groupBox7->TabStop = false;
 			this->groupBox7->Text = L"Autorzy:";
@@ -553,7 +570,7 @@ namespace DES_GUI {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(15, 75);
+			this->label6->Location = System::Drawing::Point(15, 60);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(70, 13);
 			this->label6->TabIndex = 2;
@@ -562,7 +579,7 @@ namespace DES_GUI {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(15, 50);
+			this->label5->Location = System::Drawing::Point(15, 40);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(89, 13);
 			this->label5->TabIndex = 1;
@@ -571,17 +588,67 @@ namespace DES_GUI {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(15, 25);
+			this->label4->Location = System::Drawing::Point(15, 20);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(72, 13);
 			this->label4->TabIndex = 0;
 			this->label4->Text = L"Guzek Paweł";
+			// 
+			// groupBox10
+			// 
+			this->groupBox10->Controls->Add(this->groupBox12);
+			this->groupBox10->Controls->Add(this->groupBox11);
+			this->groupBox10->Location = System::Drawing::Point(627, 349);
+			this->groupBox10->Name = L"groupBox10";
+			this->groupBox10->Size = System::Drawing::Size(245, 108);
+			this->groupBox10->TabIndex = 13;
+			this->groupBox10->TabStop = false;
+			this->groupBox10->Text = L"Informacje dodatkowe";
+			// 
+			// groupBox11
+			// 
+			this->groupBox11->Controls->Add(this->textStatus);
+			this->groupBox11->Location = System::Drawing::Point(7, 19);
+			this->groupBox11->Name = L"groupBox11";
+			this->groupBox11->Size = System::Drawing::Size(232, 40);
+			this->groupBox11->TabIndex = 0;
+			this->groupBox11->TabStop = false;
+			this->groupBox11->Text = L"Status tekstu";
+			// 
+			// groupBox12
+			// 
+			this->groupBox12->Controls->Add(this->fileStatus);
+			this->groupBox12->Location = System::Drawing::Point(8, 60);
+			this->groupBox12->Name = L"groupBox12";
+			this->groupBox12->Size = System::Drawing::Size(232, 40);
+			this->groupBox12->TabIndex = 1;
+			this->groupBox12->TabStop = false;
+			this->groupBox12->Text = L"Status pliku";
+			// 
+			// textStatus
+			// 
+			this->textStatus->AutoSize = true;
+			this->textStatus->Location = System::Drawing::Point(15, 18);
+			this->textStatus->Name = L"textStatus";
+			this->textStatus->Size = System::Drawing::Size(68, 13);
+			this->textStatus->TabIndex = 0;
+			this->textStatus->Text = L"Oczekiwanie";
+			// 
+			// fileStatus
+			// 
+			this->fileStatus->AutoSize = true;
+			this->fileStatus->Location = System::Drawing::Point(15, 18);
+			this->fileStatus->Name = L"fileStatus";
+			this->fileStatus->Size = System::Drawing::Size(68, 13);
+			this->fileStatus->TabIndex = 0;
+			this->fileStatus->Text = L"Oczekiwanie";
 			// 
 			// myGUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(884, 561);
+			this->Controls->Add(this->groupBox10);
 			this->Controls->Add(this->groupBox7);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
@@ -605,6 +672,11 @@ namespace DES_GUI {
 			this->groupBox8->PerformLayout();
 			this->groupBox7->ResumeLayout(false);
 			this->groupBox7->PerformLayout();
+			this->groupBox10->ResumeLayout(false);
+			this->groupBox11->ResumeLayout(false);
+			this->groupBox11->PerformLayout();
+			this->groupBox12->ResumeLayout(false);
+			this->groupBox12->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -732,6 +804,8 @@ namespace DES_GUI {
 			tkey = guiUtils.changeTextDisplayType(3, 1, tkey);
 		}
 		if (textInTextBox->Text->Length > 0 && textInTextBox->Text->Length > 0 && key.setKey(tkey)) {
+			textStatus->Text = "Szyfrowanie";
+			Refresh();
 			string pText = guiUtils.sStringToString(textInTextBox->Text);
 			if (textInRadioButton2->Checked) {
 				pText = guiUtils.changeTextDisplayType(2, 1, pText);
@@ -740,6 +814,8 @@ namespace DES_GUI {
 			string cText = des.encrypt(pText, key);
 			textOutRadio2->Checked = true;
 			textOutTextBox->Text = guiUtils.stringToSString(cText);
+			textStatus->Text = "Oczekiwanie";
+			Refresh();
 		}
 	}
 	private: System::Void textButtonDecrypt_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -752,6 +828,8 @@ namespace DES_GUI {
 			tkey = guiUtils.changeTextDisplayType(3, 1, tkey);
 		}
 		if (textInTextBox->Text->Length > 0 && textInTextBox->Text->Length > 0 && key.setKey(tkey)) {
+			textStatus->Text = "Deszyfrowanie";
+			Refresh();
 			string pText = guiUtils.sStringToString(textInTextBox->Text);
 			if (textInRadioButton2->Checked) {
 				pText = guiUtils.changeTextDisplayType(2, 1, pText);
@@ -760,6 +838,8 @@ namespace DES_GUI {
 			string cText = des.decrypt(pText, key);
 			textOutRadio1->Checked = true;
 			textOutTextBox->Text = guiUtils.stringToSString(cText);
+			textStatus->Text = "Oczekiwanie";
+			Refresh();
 		}
 	}
 	private: System::Void keySaveToFileButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -801,11 +881,15 @@ namespace DES_GUI {
 			tkey = guiUtils.changeTextDisplayType(3, 1, tkey);
 		}
 		if (fileInTextBox->Text->Length > 0 && fileOutTextBox->Text->Length > 0 && key.setKey(tkey)) {
+			fileStatus->Text = "Szyfrowanie";
+			Refresh();
 			string pText = guiUtils.sStringToString(fileInTextBox->Text);
 			string cText = guiUtils.sStringToString(fileOutTextBox->Text);
 
 			DataStandardEncryption des;
 			des.encrypt(pText, cText, key);
+			fileStatus->Text = "Oczekiwanie";
+			Refresh();
 		}
 	}
 	private: System::Void fileButtonDecrypt_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -818,11 +902,15 @@ namespace DES_GUI {
 			tkey = guiUtils.changeTextDisplayType(3, 1, tkey);
 		}
 		if (fileInTextBox->Text->Length > 0 && fileOutTextBox->Text->Length > 0 && key.setKey(tkey)) {
+			fileStatus->Text = "Deszyfrowanie...";
+			Refresh();
 			string pText = guiUtils.sStringToString(fileInTextBox->Text);
 			string cText = guiUtils.sStringToString(fileOutTextBox->Text);
 
 			DataStandardEncryption des;
 			des.decrypt(pText, cText, key);
+			fileStatus->Text = "Oczekiwanie";
+			Refresh();
 		}
 	}
 };
